@@ -116,12 +116,14 @@
 	
 	[self.splashPresentingAnimation setDelegate:self];
 	self.splashPresentingAnimation.duration = self.splashAnimationDuration;
+	self.splashPresentingAnimation.fillMode = kCAFillModeForwards;
 	self.splashPresentingAnimation.removedOnCompletion = NO;
 	[self.splashPresentingAnimation setValue:IRSplashWindowDefaultSplashPresentingAnimationIdentifierValue forKey:IRSplashWindowDefaultSplashAnimationIdentifierKey];
 	
 	
 	[self.splashRetreatingAnimation setDelegate:self];
 	self.splashRetreatingAnimation.duration = self.splashAnimationDuration;
+	self.splashRetreatingAnimation.fillMode = kCAFillModeForwards;
 	self.splashRetreatingAnimation.removedOnCompletion = NO;
 	[self.splashRetreatingAnimation setValue:IRSplashWindowDefaultSplashRetreatingAnimationIdentifierValue forKey:IRSplashWindowDefaultSplashAnimationIdentifierKey];
 	
@@ -177,6 +179,8 @@
 	self.splashLayer.position = CGGetRelativeMidPointOfRect(self.frame);
 	self.splashLayer.zPosition = 512;	//	Hard-coded default.
 	
+//	self.splashLayer.backgroundColor = [UIColor clearColor].CGColor;
+	self.splashLayer.opaque = NO;
 	self.splashLayer.contents = (id)[self.splashImage CGImage];
 	
 	self.splashRetreated = YES;
@@ -217,18 +221,23 @@
 	
 	if ([animationIdentifier isEqualToString:IRSplashWindowDefaultSplashRetreatingAnimationIdentifierValue]) {
 
-		[self.splashLayer removeFromSuperlayer];
 		self.userInteractionEnabled = YES;
 		
 		if ([self.delegate respondsToSelector:@selector(splashDidRetreat:)])
 		[(id <IRSplashWindowDelegate>)self.delegate splashDidRetreat:self];
 		
-		self.splashRetreated = NO;
+		self.splashRetreated = YES;
 		
 	}
 	
-	[self.splashLayer removeAnimationForKey:[theAnimation keyPath]];
-	[self.splashLayer setValue:[theAnimation toValue] forKeyPath:[theAnimation keyPath]];
+	@synchronized (self) {
+	
+		[self.splashLayer removeAnimationForKey:[theAnimation keyPath]];
+		[self.splashLayer setValue:[theAnimation toValue] forKeyPath:[theAnimation keyPath]];
+		
+	}
+
+	[self.splashLayer removeFromSuperlayer];
 	
 }
 
