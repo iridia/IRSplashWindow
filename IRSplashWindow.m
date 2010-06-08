@@ -47,7 +47,7 @@
 
 
 @implementation IRSplashWindow
-@synthesize delegate, splashLayer, splashImage, splashPresentingAnimation, splashRetreatingAnimation, splashAnimationDuration, showSplashWithAnimation, transitionType;
+@synthesize delegate, splashLayer, splashImage, splashPresentingAnimation, splashRetreatingAnimation, splashAnimationDuration, splashRetreated, showSplashWithAnimation, transitionType;
 
 
 
@@ -179,6 +179,8 @@
 	
 	self.splashLayer.contents = (id)[self.splashImage CGImage];
 	
+	self.splashRetreated = YES;
+	
 //	FIXME: provide mechanism that checks self.showSplashWithAnimation
 	[self.layer addSublayer:self.splashLayer];
 
@@ -193,6 +195,8 @@
 
 
 - (void) retreatSplash {
+
+//	NSLog(@"IRWindow retreating splash");
 	
 	if (!self.splashLayer) return;
 	
@@ -218,7 +222,9 @@
 		
 		if ([self.delegate respondsToSelector:@selector(splashDidRetreat:)])
 		[(id <IRSplashWindowDelegate>)self.delegate splashDidRetreat:self];
-
+		
+		self.splashRetreated = NO;
+		
 	}
 	
 	[self.splashLayer removeAnimationForKey:[theAnimation keyPath]];

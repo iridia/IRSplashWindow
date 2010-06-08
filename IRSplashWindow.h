@@ -53,10 +53,12 @@ typedef enum {
 @interface IRSplashWindow : UIWindow {			//	Defaults:
 
 	IRSplashWindowTransitionType transitionType;	//	IRSplashWindowTransitionTypeFade
-	BOOL showSplashWithAnimation;				//	NO
+	BOOL showSplashWithAnimation;			//	NO
 	id<IRSplashWindowDelegate> delegate;		//	nil
 	
 	NSTimeInterval splashAnimationDuration;
+	
+	BOOL splashRetreated;				//	NO
 
 	@private
 
@@ -81,6 +83,7 @@ typedef enum {
 @property (assign) id delegate;	//	Weak reference.
 @property (assign) NSTimeInterval splashAnimationDuration;
 @property (assign) BOOL showSplashWithAnimation;
+@property (assign) BOOL splashRetreated;
 @property (assign) IRSplashWindowTransitionType transitionType;
 
 
