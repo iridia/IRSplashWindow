@@ -176,7 +176,7 @@
 	
 	self.splashLayer = [CALayer layer];
 	self.splashLayer.bounds = self.frame;
-	self.splashLayer.position = CGGetRelativeMidPointOfRect(self.frame);
+	self.splashLayer.position = IRCGRectGetLocalMidXY(self.frame);
 	self.splashLayer.zPosition = 512;	//	Hard-coded default.
 	
 //	self.splashLayer.backgroundColor = [UIColor clearColor].CGColor;
