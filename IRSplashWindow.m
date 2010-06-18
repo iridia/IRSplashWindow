@@ -116,6 +116,7 @@
 	
 	[self.splashPresentingAnimation setDelegate:self];
 	self.splashPresentingAnimation.duration = self.splashAnimationDuration;
+	self.splashPresentingAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 	self.splashPresentingAnimation.fillMode = kCAFillModeForwards;
 	self.splashPresentingAnimation.removedOnCompletion = NO;
 	[self.splashPresentingAnimation setValue:IRSplashWindowDefaultSplashPresentingAnimationIdentifierValue forKey:IRSplashWindowDefaultSplashAnimationIdentifierKey];
@@ -123,10 +124,10 @@
 	
 	[self.splashRetreatingAnimation setDelegate:self];
 	self.splashRetreatingAnimation.duration = self.splashAnimationDuration;
+	self.splashRetreatingAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 	self.splashRetreatingAnimation.fillMode = kCAFillModeForwards;
 	self.splashRetreatingAnimation.removedOnCompletion = NO;
 	[self.splashRetreatingAnimation setValue:IRSplashWindowDefaultSplashRetreatingAnimationIdentifierValue forKey:IRSplashWindowDefaultSplashAnimationIdentifierKey];
-	
 	
 }
 
