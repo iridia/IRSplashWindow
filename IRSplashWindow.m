@@ -141,10 +141,9 @@
 	
 	NSString *splashImageName;
 	
-	splashImageName = (NSString *)[[[NSBundle mainBundle] infoDictionary] objectForKey:@"IRSplashWindowImage"];
-	if (!splashImageName) splashImageName = @"Default.png";
-	
-	self.splashImage = [UIImage imageNamed:splashImageName];
+	self.splashImage = [UIImage imageNamed:(NSString *)[[[NSBundle mainBundle] infoDictionary] objectForKey:@"IRSplashWindowImage"]];
+
+	if (!self.splashImage) self.splashImage = [UIImage imageNamed:@"Default"];
 	
 	if (!self.splashImage) {
 	
