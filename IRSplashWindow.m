@@ -139,7 +139,7 @@
 	
 	if (self.splashAnimationDuration == 0)
 	self.splashAnimationDuration = IRSplashWindowDefaultSplashAnimationDuration;
-		
+
 	self.splashImage = [UIImage imageNamed:(NSString *)[[[NSBundle mainBundle] infoDictionary] objectForKey:@"IRSplashWindowImage"]];
 
 	if (!self.splashImage) self.splashImage = [UIImage imageNamed:@"Default"];
