@@ -13,7 +13,7 @@
 
 
 
-#define IRSplashWindowDefaultSplashAnimationDuration 0.8
+#define IRSplashWindowDefaultSplashAnimationDuration 0.3
 
 #define IRSplashWindowDefaultSplashPresentingAnimationIdentifierValue @"Presenting"
 #define IRSplashWindowDefaultSplashRetreatingAnimationIdentifierValue @"Retreating"
